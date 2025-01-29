@@ -5,4 +5,5 @@ project(EstructuraDatos C) # Asegúrate de poner "C" para proyectos en C
 set(CMAKE_C_STANDARD 99)
 
 # Agrega tu archivo fuente principal
-add_executable(EstructuraDatos Tema0/main.c)
+add_executable(EstructuraDatos
+        Tema0/Practica1.c)

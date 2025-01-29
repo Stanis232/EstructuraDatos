@@ -1,51 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 void subprogramaArray(int num)
 {
-    if (num<=0)
+    if (num <= 0)
     {
-        printf("Stack:limite alcanzado");
+        printf("Stack: limite alcanzado\n");
         return;
-
-
     }
-    int array[10000];
+
     printf("Stack: Llamada recursiva %d\n", num);
-
-    subprogramaArray(num-1);
-
-
-    /*if (num <= 0) {
-        printf("Límite alcanzado\n");
-        return;
-    }
-
-    int *array = (int *)malloc(100000 * sizeof(int)); // Ilimitado cosa que antes se limitaba solo a 8Megas
-    if (array == NULL) {
-        printf("No se pudo asignar memoria\n");
-        return;
-    }
-
-    printf("Llamada recursiva %d\n", num);
-
     subprogramaArray(num - 1);
-
-    free(array); // Libera memoria del heap*/
 }
 
 void subprogramaPuntero(int* ptr, int num1)
 {
-    if (num1<=0)
+    if (num1 <= 0)
     {
-        printf("Heap: limite alcanzado");
+        printf("Heap: limite alcanzado\n");
         return;
-
-
     }
+
     ptr = (int *)malloc(100000 * sizeof(int));
-    if (ptr==NULL)
+    if (ptr == NULL)
     {
         printf("Heap: Memoria agotada en la llamada %d\n", num1);
         return;
@@ -56,24 +33,20 @@ void subprogramaPuntero(int* ptr, int num1)
 
     // Liberar memoria antes de salir
     free(ptr);
-
-
 }
-
 
 int main() {
     int num1;
 
     printf("Dime un número para Array: ");
     scanf("%d", &num1);
-    printf("Se inicia prueba en Stack");
+
+    printf("Se inicia prueba en Stack\n");
     subprogramaArray(num1);
 
-
-    printf("Se inicia prueba en heap");
+    printf("Se inicia prueba en heap\n");
     int *ptr = NULL;
-    subprogramaPuntero(ptr,num1);
+    subprogramaPuntero(ptr, num1);
+
     return 0;
-
 }
-
