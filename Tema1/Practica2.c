@@ -9,7 +9,7 @@ int busquedaSecuencial(int *array, int size, int num) {
     }
     return -1;
 }
-int main() {
+//int main() {
     /*
     int array[] = {1, 5, 3, 8, 1};
     int size = sizeof(array) / sizeof(array[0]);
@@ -20,4 +20,4 @@ int main() {
     */
 
 
-}
+//}

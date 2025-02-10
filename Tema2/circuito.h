@@ -1,0 +1,16 @@
+//
+// Created by s.yaruchyk.2023 on 10/02/2025.
+//
+
+#ifndef CIRCUITO_H
+#define CIRCUITO_H
+#include "complejo.h"
+
+
+t_complejo impedanciaL(float w, float l);
+t_complejo impedanciaR(float R);
+t_complejo impedanciaC(float w, float C);
+t_complejo leyOhm(t_complejo Z, float I);
+t_complejo impedanciaTotal(t_complejo ZR, t_complejo ZL, t_complejo ZC);
+
+#endif //CIRCUITO_H

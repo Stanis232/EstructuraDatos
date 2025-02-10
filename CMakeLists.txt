@@ -6,4 +6,10 @@ set(CMAKE_C_STANDARD 99)
 
 # Agrega tu archivo fuente principal
 add_executable(EstructuraDatos
-        Tema0/Practica1.c)
+        Tema0/Practica1.c
+        Tema1/Practica2.c
+        Tema2/complejo.c
+        Tema2/complejo.h
+        Tema2/main.c
+        Tema2/circuito.c
+        Tema2/circuito.h)
