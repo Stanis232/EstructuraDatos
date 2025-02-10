@@ -36,4 +36,25 @@ t_complejo impedanciaTotal(t_complejo ZR, t_complejo ZL, t_complejo ZC) {
     crearComplejo(ZR.real + ZL.real + ZC.real, ZR.imag + ZL.imag + ZC.imag, &Ztotal);
     return Ztotal;
 }
+t_complejo caidaPotencial(t_complejo I, t_complejo Z) {
+    t_complejo V;
+    crearComplejo(
+        I.real * Z.real - I.imag * Z.imag, // Parte real
+        I.real * Z.imag + I.imag * Z.real, // Parte imaginaria
+        &V
+    );
+    return V;
+}
+t_complejo intensidad(t_complejo V, t_complejo Z) {
+    t_complejo I;
+    float divisor = Z.real * Z.real + Z.imag * Z.imag;
+    crearComplejo(
+        (V.real * Z.real + V.imag * Z.imag) / divisor,
+        (V.imag * Z.real - V.real * Z.imag) / divisor,
+        &I
+    );
+    return I;
+}
+
+
 
