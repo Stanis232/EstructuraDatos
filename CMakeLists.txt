@@ -1,15 +1,20 @@
 cmake_minimum_required(VERSION 3.20)
-project(EstructuraDatos C) # Asegúrate de poner "C" para proyectos en C
+project(EstructuraDatos C)
 
 # Configura el estándar de C
 set(CMAKE_C_STANDARD 99)
 
-# Agrega tu archivo fuente principal
-add_executable(EstructuraDatos
-        #Tema0/Practica1.c
-        Tema1/Practica2.c
-        Tema2/complejo.c
-        Tema2/complejo.h
+# Ejecutable para el código en Tema2 (main.c + dependencias)
+add_executable(MainEjecutable
         Tema2/main.c
+        Tema2/complejo.c
         Tema2/circuito.c
-        Tema2/circuito.h)
+)
+
+# Ejecutable independiente para Practica2.c
+add_executable(Practica2Ejecutable
+        Tema1/Practica2.c
+)
+
+# Opcional: Puedes descomentar esto si quieres otro ejecutable
+# add_executable(Ejemplo1Ejecutable Tema1/Ejemplo1.c)
