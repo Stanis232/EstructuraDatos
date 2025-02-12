@@ -25,6 +25,23 @@ int busquedaBinaria(int *array, int size, int num) {
     return -1;
 }
 
+void ordenacionDirecta(int *array, int size)
+{
+for (int i = 0; i < size - 1; i++)
+{
+    for (int j = 0; j < size - i - 1; j++)
+    {
+        if (array[j] > array[j + 1])
+        {
+            int temp = array[j];
+            array[j] = array[j + 1];
+            array[j + 1] = temp;
+        }
+    }
+
+}
+}
+
 // Función para generar un array aleatorio de tamaño 'tam'
 void generarArray(int *array, int tam) {
     for (int i = 0; i < tam; i++) {
@@ -32,6 +49,51 @@ void generarArray(int *array, int tam) {
     }
 }
 int main() {
+
+    //APARTADO C
+    int N = 10;
+
+    int *arrayc = (int *)malloc(N * sizeof(int));
+    if (arrayc == NULL) {
+        printf("Error al asignar memoria.\n");
+
+        return 1;
+    }
+        generarArray(arrayc, N);
+    //Original
+    printf("Arreglo original:\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", arrayc[i]);
+    }
+    printf("\n");
+
+    struct timespec inicioc, finc;
+    clock_gettime(CLOCK_MONOTONIC, &inicioc);
+    ordenacionDirecta(arrayc, N);
+    clock_gettime(CLOCK_MONOTONIC,&finc);
+    // Calcular y mostrar el tiempo de ejecución
+    double tiempoc = (finc.tv_sec - inicioc.tv_sec) + (finc.tv_nsec - inicioc.tv_nsec) / 1E9;
+    printf("Tiempo de ejecución: %.9f segundos\n", tiempoc);
+    // Mostrar el arreglo ordenado
+    printf("Arreglo ordenado:\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", arrayc[i]);
+    }
+    printf("\n");
+
+    int interaciones = 0;
+    // Contar las iteraciones del bucle
+    for (int i = 0; i < N; i++) {
+        for (int j = i + 1; j < N; j++) {
+            interaciones++; // Incrementar la variable de iteraciones
+        }
+    }
+
+    printf("Número de iteraciones del bucle: %d\n", interaciones);
+
+    free(arrayc);
+    return 0;
+
     //APARTADO B
     int arrayb[] = {1, 2, 3, 4 ,5, 7 , 9  };
     int sizeb = sizeof(arrayb) / sizeof(arrayb[0]);
