@@ -9,6 +9,21 @@ int busquedaSecuencial(int *array, int size, int num) {
     }
     return -1;
 }
+int busquedaBinaria(int *array, int size, int num) {
+    int inicio = 0;
+    int fin = size - 1;
+    while (inicio <= fin) {
+        int medio = (inicio + fin) / 2;
+        if (array[medio] == num) {
+            return medio;
+        } else if (array[medio] < num) {
+            inicio = medio + 1;
+        } else {
+            fin = medio - 1;
+        }
+    }
+    return -1;
+}
 
 // Función para generar un array aleatorio de tamaño 'tam'
 void generarArray(int *array, int tam) {
@@ -17,6 +32,18 @@ void generarArray(int *array, int tam) {
     }
 }
 int main() {
+    //APARTADO B
+    int arrayb[] = {1, 2, 3, 4 ,5, 7 , 9  };
+    int sizeb = sizeof(arrayb) / sizeof(arrayb[0]);
+    int numb = 0;
+    int resultadob = busquedaBinaria(arrayb, sizeb, numb);
+    if (resultadob != -1) {
+        printf("El número %d se encontró en la posición %d del Array.\n", numb, resultadob);
+    } else {
+        printf("El número %d no se encontró en el Array.\n", numb);
+    }
+    return 0;
+
     /*
     int array[] = {1, 5, 3, 8, 1};
     int size = sizeof(array) / sizeof(array[0]);
@@ -25,6 +52,8 @@ int main() {
     printf("El resultado es: %d\n", resultado);
     return 0;
     */
+
+    //APARTADO A
     int tam = 100000; // Tamaño del array
     int *array = (int *)malloc(tam * sizeof(int));
     if (array == NULL) {
@@ -50,5 +79,7 @@ int main() {
 
     free(array); // Liberar memoria
     return 0;
+
+
 
 }
