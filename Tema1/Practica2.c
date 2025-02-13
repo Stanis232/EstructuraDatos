@@ -48,7 +48,102 @@ void generarArray(int *array, int tam) {
         array[i] = rand() % 10000; // Valores entre 0 y 9999
     }
 }
+void mezcla(int* array, int izq, int medio, int der)
+{
+    int i, j,k;
+   int n1 = medio - izq + 1;
+    int n2 = der -medio;
+
+    int *I = (int *)malloc(n1 *sizeof(int));
+    int *D = (int * )malloc(n2 *sizeof(int));
+
+
+    // Copiar datos a los subarrays temporales
+    for (i = 0; i < n1; i++)
+        I[i] = array[izq + i];
+    for (j = 0; j < n2; j++)
+        D[j] = array[medio + 1 + j];
+
+    // Fusionar los subarrays ordenados
+    i = 0, j = 0, k = izq;
+    while (i < n1 && j < n2) {
+        if (I[i] <= D[j]) {
+            array[k] = I[i];
+            i++;
+        } else {
+            array[k] = D[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copiar los elementos restantes de L y R si los hay
+    while (i < n1) {
+        array[k] =I[i];
+        i++;
+        k++;
+    }
+    while (j < n2) {
+        array[k] = D[j];
+        j++;
+        k++;
+    }
+
+    free(I);
+    free(D);
+}
+
+
+
+void ordenacionMezcla(int *array, int izq, int der) {
+    if (izq<der)
+    {
+        int medio = izq + (der - izq) / 2;
+        ordenacionMezcla(array, izq, medio);
+        ordenacionMezcla(array,medio + 1, der);
+
+        mezcla(array, izq, medio, der);
+    }
+}
+
 int main() {
+    //Apartado D
+    int ND = 10;
+    int *arrayD = (int *)malloc(ND * sizeof(int));
+    if (arrayD == NULL) {
+        printf("Error al asignar memoria.\n");
+        return 1;
+    }
+
+    generarArray(arrayD, ND);
+    struct timespec iniciod, find;
+    clock_gettime(CLOCK_MONOTONIC, &iniciod);
+    // Mostrar el array original (opcional, descomentar si es necesario)
+
+    printf("Arreglo original:\n");
+    for (int i = 0; i < ND; i++) {
+        printf("%d ", arrayD[i]);
+    }
+    printf("\n");
+
+    ordenacionMezcla(arrayD, 0, ND - 1);
+
+    clock_gettime(CLOCK_MONOTONIC, &find);
+    double tiempod = (find.tv_sec - iniciod.tv_sec) + (find.tv_nsec - iniciod.tv_nsec) / 1E9;
+
+    printf("Tiempo de ejecución (mezcla): %.9f segundos\n", tiempod);
+    // Mostrar el array ordenado (opcional, descomentar si es necesario)
+
+    printf("Arreglo ordenado:\n");
+    for (int i = 0; i < ND; i++) {
+        printf("%d ", arrayD[i]);
+    }
+    printf("\n");
+
+    free(arrayD);
+    return 0;
+
+
 
     //APARTADO C
     int N = 10;
