@@ -2,26 +2,33 @@
 //
 #include "ListaEstatica.h"
 
-void crearListaVacia(Tlista *l) {
+
+/*
+void asignarElemento(tElemento *dest, tElemento src) {
+    *dest = src;  // Si tElemento es un tipo básico como int o float
+}
+*/
+
+void crearListaVacia(TLista *l) {
     l->posOcupada = -1;
 }
 
-int esListaLlena(Tlista l) {
+int esListaLlena(TLista l) {
     return l.posOcupada == DIM - 1;
 }
 
-int esListaVacia(Tlista l) {
+int esListaVacia(TLista l) {
     return l.posOcupada == -1;
 }
 
-void construir(Tlista *l, tElemento elem) {
+void construir(TLista *l, tElemento elem) {
     if (!esListaLlena(*l)) {
         l->posOcupada++;
         asignarElemento(&l->almacen[l->posOcupada], elem);
     }
 }
 
-void restoListaL(Tlista *res, Tlista l) {
+void restoListaL(TLista *res, TLista l) {
     if (!esListaVacia(l)) {  // Falta cerrar paréntesis corregido
         crearListaVacia(res);
         for (int i = 0; i < l.posOcupada; i++) {
@@ -31,18 +38,23 @@ void restoListaL(Tlista *res, Tlista l) {
     }
 }
 
-void obtenerPrimeraLista(Tlista l, tElemento *elem) {
+void obtenerPrimeraLista(TLista l, tElemento *elem) {
     if (!esListaVacia(l)) {
-        asignarElemento(elem, l.almacen[0]); // Se accede al primer elemento, no al último
+        asignarElemento(elem, l.almacen[l.posOcupada]); // Se accede al primer elemento, no al último
     }
 }
-int eliminarElementoLista(Tlista *l, tElemento elem){
+void desplazarIzquierda(TLista *l, int pos) {
+    for (int i = pos; i < l->posOcupada; i++) {
+        asignarElemento(&(l->almacen[i]), l->almacen[i + 1]);
+}
+}
+void eliminarElementoLista(TLista *l, tElemento elem){
   int i=0;
-  if (!esListaVacia(*l)
-{
-              while(!IgualElemento(elem,l->almacen[i}&&(i<=l->posOcupada)){
-    i++;
+  if (!esListaVacia(*l)) {
+      while (!IgualElemento(elem, l->almacen[i] && (i < l->posOcupada))) {
+          i++;
   }
   desplazarIzquierda(l,i);
-  l->posOcupada;
+  l->posOcupada--;
+}
 }

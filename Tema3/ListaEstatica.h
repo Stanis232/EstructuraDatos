@@ -9,26 +9,27 @@ typedef struct {
     tElemento almacen[DIM];
 
     int posOcupada;
-}Tlista;
+}TLista;
+void asignarElemento(tElemento *dest, tElemento src);
 
 // Constructoras generadoras
-void crearListaVacia(Tlista *l);
-void construir(Tlista *l, tElemento elem);
+void crearListaVacia(TLista *l);
+void construir(TLista *l, tElemento elem);
 // Observadoras selectoras
-void obtenerPrimeroLista(Tlista l, tElemento* elem);
-void restoListaL (Tlista *res, Tlista l);
-void ultimoLista(tElemento *e, Tlista l);
+void obtenerPrimeroLista(TLista l, tElemento* elem);
+void restoListaL (TLista *res, TLista l);
+void ultimoLista(tElemento *e, TLista l);
 // Observadoras no selectoras
-int esListaVacia(Tlista l);
-int longitudLista (Tlista l);
-int perteneceLista (tElemento e, Tlista l);
+int esListaVacia(TLista l);
+int longitudLista (TLista l);
+int perteneceLista (tElemento e, TLista l);
 // Constructoras no generadoras
-void insertarListaFinal(Tlista *l, tElemento elem);
-int eliminarElementoLista(Tlista *l, tElemento elem);
-void concatenarLista (Tlista *l1, Tlista l2);
-int igualLista (Tlista l1, Tlista l2);
-void asignarLista (Tlista original, Tlista *copia);
-void destruirLista(Tlista *l);
-void mostrarLista(Tlista l);
+void insertarListaFinal(TLista *l, tElemento elem);
+void eliminarElementoLista(TLista *l, tElemento elem);
+void concatenarLista (TLista *l1, TLista l2);
+int igualLista (TLista l1, TLista l2);
+void asignarLista (TLista original, TLista *copia);
+void destruirLista(TLista *l);
+void mostrarLista(TLista l);
 
 #endif //LISTAESTATICA_H
